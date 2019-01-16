@@ -1,0 +1,56 @@
+@import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
+@import 'AppCustomizer';
+
+@keyframes slideInFromTop {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+}
+.app {
+    .top {
+        height:60px;
+        text-align:center;
+        line-height:2.5;
+        font-weight:bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $ms-color-themePrimary;
+        color: $ms-color-white;
+
+        animation-duration: 0.4s; /* the duration of the animation */
+        animation-timing-function: ease-out; /* how the animation will behave */
+        animation-delay: 0s; /* how long to delay the animation from starting */
+        animation-iteration-count: 1; /* how many times the animation will play */
+        animation-name: slideInFromTop; /* the name of the animation we defined above */
+
+        .warningIcon{
+            font-size: 2em;
+            padding: 5px;
+        }
+    }
+    .bottom {
+        height:40px;
+        text-align:center;
+        line-height:2.5;
+        font-weight:bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $ms-color-themePrimary;
+        color: $ms-color-white;
+    }
+}
+
+
+      // Hide any class that starts with feedback
+div[class^="feedback_"]{
+    display: none !important;
+}
+
+div[class^="spAppAndPropertyPanelContainer"] {
+	background-color: rgba(255, 255, 255, 1) !important;
+}

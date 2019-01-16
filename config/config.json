@@ -1,0 +1,18 @@
+{
+  "$schema": "https://dev.office.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "external-user-checker-application-customizer": {
+      "components": [
+        {
+          "entrypoint": "./lib/extensions/externalUserChecker/ExternalUserCheckerApplicationCustomizer.js",
+          "manifest": "./src/extensions/externalUserChecker/ExternalUserCheckerApplicationCustomizer.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "ExternalUserCheckerApplicationCustomizerStrings": "lib/extensions/externalUserChecker/loc/{locale}.js"
+  }
+}

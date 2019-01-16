@@ -1,0 +1,29 @@
+{
+  "$schema": "https://dev.office.com/json-schemas/core-build/serve.schema.json",
+  "port": 4321,
+  "https": true,
+  "serveConfigurations": {
+    "default": {
+      "pageUrl": "https://syngenta.sharepoint.com/sites/IT_Careers/SitePages/Home.aspx",
+      "customActions": {
+        "d31504bb-2b79-4243-ad97-9e61bc9dc299": {
+          "location": "ClientSideExtension.ApplicationCustomizer",
+          "properties": {
+            "Top": " There are external users within this site. Do not store business sensitive documents!"
+          }
+        }
+      }
+    },
+    "externalUserChecker": {
+      "pageUrl": "https://syngenta.sharepoint.com/sites/IT_Careers/SitePages/Home.aspx",
+      "customActions": {
+        "d31504bb-2b79-4243-ad97-9e61bc9dc299": {
+          "location": "ClientSideExtension.ApplicationCustomizer",
+          "properties": {
+            "Top": " There are external users within this site. Do not store business sensitive documents!"
+          }
+        }
+      }
+    }
+  }
+}

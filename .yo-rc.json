@@ -1,0 +1,8 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "version": "1.4.1",
+    "libraryName": "external-user-checker",
+    "libraryId": "ed11f00d-22d3-4874-8ce3-f5c330a2a9f7",
+    "environment": "spo"
+  }
+}

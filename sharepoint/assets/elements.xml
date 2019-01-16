@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+    <CustomAction
+        Title="ExternalUserChecker"
+        Location="ClientSideExtension.ApplicationCustomizer"
+        ClientSideComponentId="d31504bb-2b79-4243-ad97-9e61bc9dc299"
+        ClientSideComponentProperties="{&quot;Top&quot;:&quot;There are external users within this site. Do not store business sensitive documents!&quot;}">
+    </CustomAction>
+</Elements>
