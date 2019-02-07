@@ -31,9 +31,9 @@ export default class ExternalUserCheckerApplicationCustomizer
 
    // These have been added
    private _topPlaceholder: PlaceholderContent | undefined;
-   private _bottomPlaceholder: PlaceholderContent | undefined;
+   private _rendered : boolean = false;
   @override
-  public onInit(): Promise<void> {
+  public onInit(): Promise<void> { 
     
     return super.onInit().then(_ => {
 
@@ -52,8 +52,7 @@ export default class ExternalUserCheckerApplicationCustomizer
     });
       //return Promise.resolve<void>();
   }
-  private _renderPlaceHolders(): void {
-    console.log("HelloWorldApplicationCustomizer._renderPlaceHolders()");
+  private _renderPlaceHolders = () => {
     console.log(
         "Available placeholders: ",
         this.context.placeholderProvider.placeholderNames
@@ -74,31 +73,35 @@ export default class ExternalUserCheckerApplicationCustomizer
           return;
       }
       //set a internal checking for external users.
-      setInterval(this._checkUserIsExternal(),500000);
+      if(!this._rendered){
+        setInterval(this._checkUserIsExternal,5000);
+      }
     }
   }
   //Checks thst the user is not a part of the company.
-  private _checkUserIsExternal(): void {   
-    sp.web.currentUser.get().then(currentUser =>{
+  private _checkUserIsExternal = async() =>{  
+    if(this._rendered){
+      return;
+    } 
+    let currentUser = await sp.web.currentUser.get();
       //if user is not external then check to see if other users are...
-      if(!currentUser.IsShareByEmailGuestUser || !currentUser.IsEmailAuthenticationGuestUser)
-        sp.web.siteUsers.get().then(users=>{
-          let hasExternalUsersWithPermissions = false;
-           users.forEach(async user => {
-             if (user.IsShareByEmailGuestUser || user.IsEmailAuthenticationGuestUser){
-              let hasExternalUsersWithPermissions = await this._checkUserPermisions(user);
-              //if site has external users with permission to view the site then show the message
-              if(hasExternalUsersWithPermissions){
-                this._showMessage();
-              }
-              return;
-            }
-          });
-        });
-    })
+    if(!currentUser.IsShareByEmailGuestUser || !currentUser.IsEmailAuthenticationGuestUser) {
+      let siteUsers = await sp.web.siteUsers.get();
+      siteUsers.forEach(async user=>{
+        if (user.IsShareByEmailGuestUser || user.IsEmailAuthenticationGuestUser){
+          let hasExternalUsersWithPermissions = await this._checkUserPermisions(user);
+          //if site has external users with permission to view the site then show the message
+          if(hasExternalUsersWithPermissions){
+            this._showMessage();
+            this._rendered = true;
+          }
+          return;
+        }
+      });
+    }
   }
   //Checks user has permission to view pages within a site.
-  async _checkUserPermisions(user) : Promise<any>{
+  private _checkUserPermisions = async(user) : Promise<any> => {
     return new Promise(resolve =>{
       sp.web.userHasPermissions(user.LoginName,PermissionKind.ViewPages).then(p =>{
         resolve(p);
@@ -106,7 +109,7 @@ export default class ExternalUserCheckerApplicationCustomizer
     });
   }
   //Shows Ribbon Message within a teamsite =
-  private _showMessage():void{
+  private _showMessage = () =>{
     if (this.properties) {
       let topString: string = this.properties.Top;
       if (!topString) {
@@ -124,7 +127,7 @@ export default class ExternalUserCheckerApplicationCustomizer
       }
     }
   }
-  private _onDispose(): void {
+  private _onDispose = () => {
     console.log('[HelloWorldApplicationCustomizer._onDispose] Disposed custom top and bottom placeholders.');
   }
 }

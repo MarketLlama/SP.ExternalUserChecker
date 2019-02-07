@@ -4,7 +4,7 @@
   "https": true,
   "serveConfigurations": {
     "default": {
-      "pageUrl": "https://syngenta.sharepoint.com/sites/IT_Careers/SitePages/Home.aspx",
+      "pageUrl": "https://syngenta.sharepoint.com/sites/demosite/SitePages/Home.aspx",
       "customActions": {
         "d31504bb-2b79-4243-ad97-9e61bc9dc299": {
           "location": "ClientSideExtension.ApplicationCustomizer",
@@ -15,7 +15,7 @@
       }
     },
     "externalUserChecker": {
-      "pageUrl": "https://syngenta.sharepoint.com/sites/IT_Careers/SitePages/Home.aspx",
+      "pageUrl": "https://syngenta.sharepoint.com/sites/demosite/SitePages/Home.aspx",
       "customActions": {
         "d31504bb-2b79-4243-ad97-9e61bc9dc299": {
           "location": "ClientSideExtension.ApplicationCustomizer",

@@ -1,5 +1,4 @@
 @import '~@microsoft/sp-office-ui-fabric-core/dist/sass/SPFabricCore.scss';
-@import 'AppCustomizer';
 
 @keyframes slideInFromTop {
     0% {
@@ -43,14 +42,4 @@
         background-color: $ms-color-themePrimary;
         color: $ms-color-white;
     }
-}
-
-
-      // Hide any class that starts with feedback
-div[class^="feedback_"]{
-    display: none !important;
-}
-
-div[class^="spAppAndPropertyPanelContainer"] {
-	background-color: rgba(255, 255, 255, 1) !important;
 }
