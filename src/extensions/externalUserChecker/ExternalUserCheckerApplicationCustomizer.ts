@@ -5,7 +5,7 @@ import {
   PlaceholderContent,
   PlaceholderName
 } from '@microsoft/sp-application-base';
-import { sp } from "@pnp/sp";
+import { sp, PrincipalInfo, PrincipalSource, PrincipalType } from "@pnp/sp";
 import { Dialog } from '@microsoft/sp-dialog';
 import styles from './AppCustomizer.module.scss';
 import { escape } from '@microsoft/sp-lodash-subset';
@@ -73,8 +73,9 @@ export default class ExternalUserCheckerApplicationCustomizer
           return;
       }
       //set a internal checking for external users.
+      this._checkUserIsExternal();
       if(!this._rendered){
-        setInterval(this._checkUserIsExternal,5000);
+        setInterval(this._checkUserIsExternal,50000);
       }
     }
   }
@@ -98,8 +99,19 @@ export default class ExternalUserCheckerApplicationCustomizer
           return;
         }
       });
+      this._checkGroupUsers();
     }
   }
+
+  private _checkGroupUsers = async() =>{
+    let siteGroupArray : Array<string> = [];
+    let siteGroups : Array<any> = await sp.web.siteGroups.get();
+    siteGroups.forEach(site => {
+        siteGroupArray.push(site.Title);
+    });
+
+  }
+
   //Checks user has permission to view pages within a site.
   private _checkUserPermisions = async(user) : Promise<any> => {
     return new Promise(resolve =>{
@@ -128,6 +140,6 @@ export default class ExternalUserCheckerApplicationCustomizer
     }
   }
   private _onDispose = () => {
-    console.log('[HelloWorldApplicationCustomizer._onDispose] Disposed custom top and bottom placeholders.');
+    console.log('Disposed custom top and bottom placeholders.');
   }
 }

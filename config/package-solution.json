@@ -3,14 +3,14 @@
   "solution": {
     "name": "external-user-checker-client-side-solution",
     "id": "ed11f00d-22d3-4874-8ce3-f5c330a2a9f7",
-    "version": "1.0.0.4",
+    "version": "1.0.0.5",
     "includeClientSideAssets": true,
     "features": [
       {
         "title": "Application Extension - Deployment of custom action.",
         "description": "Deploys a custom action with ClientSideComponentId association",
         "id": "5ef197f8-f6b0-4309-b130-9b59048edc7b",
-        "version": "1.0.0.4",
+        "version": "1.0.0.5",
         "assets": {
           "elementManifests": [
             "elements.xml"
